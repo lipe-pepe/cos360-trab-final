@@ -2,7 +2,7 @@
 
 Trabalho final da disciplina **COS360 – Otimização**, da **Universidade Federal do Rio de Janeiro (UFRJ)**.
 
-O programa usa programação linear inteira para alocar as tarefas de um projeto entre colaboradores. O objetivo é **minimizar o prazo total do projeto**, respeitando:
+O programa usa programação linear inteira para alocar as tarefas de um projeto entre colaboradores. Cada tarefa tem seu próprio conjunto de colaboradores habilitados a executá-la. O objetivo é **minimizar o prazo total do projeto**, respeitando:
 
 - as precedências entre tarefas;
 - a disponibilidade de cada colaborador (uma tarefa por vez);
@@ -19,14 +19,17 @@ São dados:
 | $I$ | conjunto de tarefas |
 | $K$ | conjunto de colaboradores |
 | $c_k$ | diária do colaborador $k$ |
-| $d_{ik}$ | duração (em dias) da tarefa $i$ quando executada por $k$ |
+| $E_i \subseteq K$ | colaboradores elegíveis para a tarefa $i$ (os que têm duração cadastrada) |
+| $d_{ik}$ | duração (em dias) da tarefa $i$ quando executada por $k \in E_i$ |
 | $P$ | pares $(i, j)$: a tarefa $i$ precisa terminar antes de $j$ começar |
 | $B$ | orçamento total |
-| $H$ | horizonte de planejamento: $H = \sum_{i} \max_k d_{ik}$ |
+| $H$ | horizonte de planejamento: $H = \sum_{i} \max_{k \in E_i} d_{ik}$ |
 
 ### Variáveis de decisão
 
-- $x_{ikt} \in \{0, 1\}$: vale 1 se a tarefa $i$ for feita pelo colaborador $k$ começando no dia $t$, com $t = 1, \dots, H - d_{ik} + 1$.
+- $x_{ikt} \in \{0, 1\}$: vale 1 se a tarefa $i$ for feita pelo colaborador $k$ começando no dia $t$. Só existe para $k \in E_i$ e $t = 1, \dots, H - d_{ik} + 1$. Pares tarefa-colaborador não elegíveis não geram variável.
+
+No que segue, toda soma em $k$ percorre apenas $E_i$.
 - $T$: prazo do projeto (último dia de trabalho).
 
 Expressões auxiliares:
@@ -55,7 +58,8 @@ sujeito a:
 ```
 .
 ├── dados/
-│   └── reduzido.json   # instância de exemplo (5 tarefas, 3 colaboradores)
+│   ├── reduzido.json                # instância de exemplo (5 tarefas, 3 colaboradores)
+│   └── elegibilidade_restrita.json  # exemplo com colaboradores elegíveis por tarefa
 ├── dados.py            # leitura e validação dos dados de entrada
 ├── modelo.py           # construção do modelo de programação inteira
 ├── main.py             # interface de linha de comando: resolve e mostra o cronograma
@@ -118,7 +122,7 @@ Cada instância é um arquivo JSON na pasta `dados/`. Para criar uma nova, copie
   "diaria": { "Ana": 350, "Bruno": 300 },
   "duracao": {
     "A": { "Ana": 1, "Bruno": 2 },
-    "B": { "Ana": 2, "Bruno": 1 },
+    "B": { "Bruno": 1 },
     "C": { "Ana": 1, "Bruno": 1 }
   },
   "precedencias": [["A", "C"], ["B", "C"]],
@@ -130,8 +134,22 @@ Cada instância é um arquivo JSON na pasta `dados/`. Para criar uma nova, copie
 |---|---|
 | `tarefas` | lista com os nomes das tarefas |
 | `diaria` | custo diário de cada colaborador |
-| `duracao` | para cada tarefa, quantos dias cada colaborador leva para concluí-la |
+| `duracao` | para cada tarefa, quantos dias (inteiro positivo) cada colaborador **elegível** leva para concluí-la |
 | `precedencias` | pares `[predecessora, sucessora]` |
 | `orcamento` | custo máximo permitido para o projeto |
 
-Antes de montar o modelo, o programa confere se toda tarefa tem duração para todos os colaboradores e se as precedências citam apenas tarefas existentes. Se algo estiver errado, mostra uma mensagem explicando o problema.
+### Colaboradores elegíveis
+
+A tabela `duracao` define quem pode executar cada tarefa. **Um colaborador que não aparece na tabela de uma tarefa não pode executá-la.** No exemplo acima, só Bruno pode fazer a tarefa B. O modelo não cria variáveis para os pares proibidos.
+
+Todo colaborador citado em `duracao` precisa estar em `diaria`. Já um colaborador de `diaria` pode estar cadastrado em poucas tarefas, ou até em nenhuma.
+
+### Validação
+
+Antes de montar o modelo, o programa confere se:
+
+- toda tarefa tem pelo menos um colaborador elegível;
+- toda duração é um inteiro positivo e cita um colaborador que existe em `diaria`;
+- `duracao` e `precedencias` citam apenas tarefas existentes.
+
+Se algo estiver errado, mostra uma mensagem que indica a tarefa com problema e não chama o solver.
