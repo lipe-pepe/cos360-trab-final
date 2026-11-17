@@ -1,0 +1,17 @@
+{
+  "tarefas": ["A", "B", "C", "D", "E"],
+  "diaria": {
+    "Ana": 350,
+    "Bruno": 300,
+    "Caio": 200
+  },
+  "duracao": {
+    "A": {"Ana": 1, "Bruno": 2, "Caio": 3},
+    "B": {"Ana": 2, "Bruno": 1, "Caio": 2},
+    "C": {"Ana": 1, "Bruno": 1, "Caio": 2},
+    "D": {"Ana": 2, "Bruno": 2, "Caio": 3},
+    "E": {"Ana": 1, "Bruno": 1, "Caio": 2}
+  },
+  "precedencias": [["A", "C"], ["B", "C"], ["B", "E"], ["D", "E"]],
+  "orcamento": 2500
+}
