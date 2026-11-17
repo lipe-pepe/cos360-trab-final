@@ -1,2 +1,3 @@
 pulp[cbc]==4.2.0
 numpy
+matplotlib

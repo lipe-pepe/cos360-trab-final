@@ -1,0 +1,43 @@
+{
+  "status": "Optimal",
+  "orcamento": 2500,
+  "prazo": 3,
+  "custo_total": 2000.0,
+  "cronograma": [
+    {
+      "tarefa": "A",
+      "colaborador": "Ana",
+      "inicio": 2,
+      "fim": 2,
+      "custo": 350
+    },
+    {
+      "tarefa": "B",
+      "colaborador": "Caio",
+      "inicio": 1,
+      "fim": 2,
+      "custo": 400
+    },
+    {
+      "tarefa": "C",
+      "colaborador": "Ana",
+      "inicio": 3,
+      "fim": 3,
+      "custo": 350
+    },
+    {
+      "tarefa": "D",
+      "colaborador": "Bruno",
+      "inicio": 1,
+      "fim": 2,
+      "custo": 600
+    },
+    {
+      "tarefa": "E",
+      "colaborador": "Bruno",
+      "inicio": 3,
+      "fim": 3,
+      "custo": 300
+    }
+  ]
+}

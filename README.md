@@ -62,7 +62,9 @@ sujeito a:
 │   └── elegibilidade_restrita.json  # exemplo com colaboradores elegíveis por tarefa
 ├── dados.py            # leitura e validação dos dados de entrada
 ├── modelo.py           # construção do modelo de programação inteira
-├── main.py             # interface de linha de comando: resolve e mostra o cronograma
+├── resultados/         # soluções gravadas pelo main.py (criada na primeira execução)
+├── main.py             # interface de linha de comando: resolve, mostra e grava o cronograma
+├── gantt.py            # gráfico de Gantt a partir de um JSON de resultado
 └── requirements.txt    # dependências
 ```
 
@@ -108,9 +110,41 @@ Tarefa D: Bruno, início no dia 1, término no dia 2, custo de R$ 600
 Tarefa E: Bruno, início no dia 3, término no dia 3, custo de R$ 300
 
 Custo total: R$ 2000.00
+
+Resultado gravado em .../resultados/reduzido.json
 ```
 
 Se não houver solução que caiba no orçamento, o programa mostra o status `Infeasible` e não imprime cronograma.
+
+### Arquivos de resultado
+
+O resultado de cada instância é gravado em `resultados/`, com o mesmo nome do arquivo de entrada. Por exemplo, `dados/reduzido.json` gera `resultados/reduzido.json`. Se o arquivo já existir, é sobrescrito.
+
+```json
+{
+  "status": "Optimal",
+  "orcamento": 2500,
+  "prazo": 3,
+  "custo_total": 2000.0,
+  "cronograma": [
+    { "tarefa": "A", "colaborador": "Ana", "inicio": 2, "fim": 2, "custo": 350 },
+    ...
+  ]
+}
+```
+
+Quando não há solução ótima, o arquivo traz apenas `status` e `orcamento`.
+
+### Gráfico de Gantt
+
+Junto com o JSON, o `main.py` gera o gráfico de Gantt do cronograma em `resultados/<nome>.png` (300 dpi). Cada barra é uma tarefa, rotulada com o colaborador que a executa. A linha tracejada marca o prazo ótimo. Instâncias sem solução não geram gráfico.
+
+Para refazer o gráfico a partir de um resultado já gravado, sem rodar o solver:
+
+```bash
+python gantt.py resultados/completo.json
+python gantt.py resultados/*.json
+```
 
 ## Criando novas instâncias
 

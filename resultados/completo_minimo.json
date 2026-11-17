@@ -1,0 +1,134 @@
+{
+  "status": "Optimal",
+  "orcamento": 12850,
+  "prazo": 23,
+  "custo_total": 12850.0,
+  "cronograma": [
+    {
+      "tarefa": "A",
+      "colaborador": "Bruno",
+      "inicio": 1,
+      "fim": 3,
+      "custo": 900
+    },
+    {
+      "tarefa": "B",
+      "colaborador": "Daniel",
+      "inicio": 1,
+      "fim": 1,
+      "custo": 600
+    },
+    {
+      "tarefa": "C",
+      "colaborador": "Daniel",
+      "inicio": 4,
+      "fim": 4,
+      "custo": 600
+    },
+    {
+      "tarefa": "D",
+      "colaborador": "Bruno",
+      "inicio": 5,
+      "fim": 6,
+      "custo": 600
+    },
+    {
+      "tarefa": "E",
+      "colaborador": "Bruno",
+      "inicio": 7,
+      "fim": 9,
+      "custo": 900
+    },
+    {
+      "tarefa": "F",
+      "colaborador": "Ana",
+      "inicio": 6,
+      "fim": 7,
+      "custo": 700
+    },
+    {
+      "tarefa": "G",
+      "colaborador": "Daniel",
+      "inicio": 14,
+      "fim": 14,
+      "custo": 600
+    },
+    {
+      "tarefa": "H",
+      "colaborador": "Ana",
+      "inicio": 4,
+      "fim": 5,
+      "custo": 700
+    },
+    {
+      "tarefa": "I",
+      "colaborador": "Ana",
+      "inicio": 14,
+      "fim": 14,
+      "custo": 350
+    },
+    {
+      "tarefa": "J",
+      "colaborador": "Bruno",
+      "inicio": 10,
+      "fim": 12,
+      "custo": 900
+    },
+    {
+      "tarefa": "K",
+      "colaborador": "Bruno",
+      "inicio": 13,
+      "fim": 15,
+      "custo": 900
+    },
+    {
+      "tarefa": "L",
+      "colaborador": "Ana",
+      "inicio": 12,
+      "fim": 13,
+      "custo": 700
+    },
+    {
+      "tarefa": "M",
+      "colaborador": "Ana",
+      "inicio": 16,
+      "fim": 18,
+      "custo": 1050
+    },
+    {
+      "tarefa": "N",
+      "colaborador": "Bruno",
+      "inicio": 16,
+      "fim": 16,
+      "custo": 300
+    },
+    {
+      "tarefa": "O",
+      "colaborador": "Ana",
+      "inicio": 19,
+      "fim": 21,
+      "custo": 1050
+    },
+    {
+      "tarefa": "P",
+      "colaborador": "Flavia",
+      "inicio": 22,
+      "fim": 22,
+      "custo": 500
+    },
+    {
+      "tarefa": "Q",
+      "colaborador": "Bruno",
+      "inicio": 20,
+      "fim": 22,
+      "custo": 900
+    },
+    {
+      "tarefa": "R",
+      "colaborador": "Daniel",
+      "inicio": 23,
+      "fim": 23,
+      "custo": 600
+    }
+  ]
+}
