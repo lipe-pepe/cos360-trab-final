@@ -1,0 +1,54 @@
+{
+  "tarefas": [
+    "A", "B", "C", "D", "E", "F", "G", "H", "I",
+    "J", "K", "L", "M", "N", "O", "P", "Q", "R"
+  ],
+  "diaria": {
+    "Ana": 350,
+    "Bruno": 300,
+    "Caio": 200,
+    "Daniel": 600,
+    "Erica": 350,
+    "Flavia": 500,
+    "Gabriel": 240
+  },
+  "duracao": {
+    "A": {"Ana": 3, "Bruno": 3, "Caio": 5, "Daniel": 2, "Erica": 3, "Gabriel": 4},
+    "B": {"Ana": 3, "Bruno": 2, "Caio": 5, "Daniel": 1, "Gabriel": 3},
+    "C": {"Ana": 3, "Bruno": 2, "Caio": 5, "Daniel": 1, "Gabriel": 3},
+    "D": {"Ana": 3, "Bruno": 2, "Caio": 5, "Daniel": 2, "Gabriel": 3},
+    "E": {"Ana": 4, "Bruno": 3, "Caio": 6, "Daniel": 2, "Gabriel": 4},
+    "F": {"Ana": 2, "Bruno": 3, "Caio": 4, "Daniel": 2},
+    "G": {"Ana": 2, "Bruno": 3, "Caio": 4, "Daniel": 1},
+    "H": {"Ana": 2, "Bruno": 4, "Caio": 5, "Daniel": 2},
+    "I": {"Ana": 1, "Bruno": 2, "Caio": 3, "Daniel": 1},
+    "J": {"Ana": 4, "Bruno": 3, "Caio": 6, "Daniel": 2, "Gabriel": 4},
+    "K": {"Ana": 5, "Bruno": 3, "Caio": 7, "Daniel": 2, "Gabriel": 5},
+    "L": {"Ana": 2, "Bruno": 3, "Caio": 4, "Daniel": 2},
+    "M": {"Ana": 3, "Bruno": 4, "Caio": 6, "Daniel": 2},
+    "N": {"Ana": 2, "Bruno": 1, "Caio": 3, "Daniel": 1, "Gabriel": 2},
+    "O": {"Ana": 3, "Bruno": 4, "Caio": 6, "Daniel": 2},
+    "P": {"Ana": 3, "Bruno": 3, "Caio": 4, "Daniel": 2, "Flavia": 1, "Gabriel": 4},
+    "Q": {"Ana": 4, "Bruno": 3, "Caio": 5, "Daniel": 2, "Flavia": 2, "Gabriel": 4},
+    "R": {"Ana": 2, "Bruno": 2, "Caio": 4, "Daniel": 1, "Gabriel": 3}
+  },
+  "precedencias": [
+    ["A", "C"],
+    ["A", "D"], ["B", "D"], ["C", "D"],
+    ["B", "E"], ["C", "E"], ["D", "E"],
+    ["A", "F"], ["B", "F"],
+    ["E", "G"], ["F", "G"],
+    ["A", "H"], ["B", "H"],
+    ["E", "I"], ["H", "I"],
+    ["C", "J"], ["E", "J"],
+    ["J", "K"],
+    ["A", "L"], ["B", "L"],
+    ["I", "M"], ["J", "M"], ["K", "M"], ["L", "M"],
+    ["J", "N"], ["K", "N"],
+    ["D", "O"], ["J", "O"], ["K", "O"],
+    ["G", "P"], ["M", "P"], ["O", "P"],
+    ["M", "Q"], ["N", "Q"],
+    ["P", "R"], ["Q", "R"]
+  ],
+  "orcamento": 12850
+}

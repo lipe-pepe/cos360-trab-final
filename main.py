@@ -7,6 +7,7 @@ Uso:
 """
 
 import argparse
+import sys
 
 import pulp
 
@@ -43,12 +44,21 @@ def main() -> None:
     parser.add_argument("--silent", action="store_true", help="Oculta o log do solver CBC.")
     args = parser.parse_args()
 
+    houve_erro = False
     for caminho in args.arquivos:
         print(f"\n===== {caminho} =====")
-        dados = carregar_dados(caminho)
-        m = construir_modelo(dados)
+        try:
+            dados = carregar_dados(caminho)
+            m = construir_modelo(dados)
+        except ValueError as erro:
+            print(erro, file=sys.stderr)
+            houve_erro = True
+            continue
         resultado = m.problema.solve(pulp.COIN_CMD(msg=not args.silent))
         imprimir_solucao(dados, m, resultado)
+
+    if houve_erro:
+        sys.exit(1)
 
 
 if __name__ == "__main__":
